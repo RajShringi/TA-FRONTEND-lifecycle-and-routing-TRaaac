@@ -48,14 +48,8 @@
           };
         }
         componentDidMount = async () => {
-          const res = await fetch("https://randomuser.me/api/");
-          let data = await res.json();
-          data = data.results[0];
-          this.setState({
-            data,
-            infoName: "name",
-            mainInfo: `${data.name.first} ${data.name.last}`,
-          });
+          console.log("componentDidMount");
+          this.fetchUser();
         };
 
         fetchUser = async () => {
@@ -63,9 +57,12 @@
             data: null,
           });
           const res = await fetch("https://randomuser.me/api/");
-          const data = await res.json();
+          let data = await res.json();
+          data = data.results[0];
           this.setState({
-            data: data.results[0],
+            data,
+            infoName: "name",
+            mainInfo: `${data.name.first} ${data.name.last}`,
           });
         };
         showInfo = (e) => {
